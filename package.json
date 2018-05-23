@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-ci-health-dashboard",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmarchini/nodejs-ci-health-dashboard.git"
+  },
+  "author": "Matheus Marchini <matheus@sthima.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mmarchini/nodejs-ci-health-dashboard/issues"
+  },
+  "homepage": "https://github.com/mmarchini/nodejs-ci-health-dashboard#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "node-fetch": "^2.1.2"
+  }
+}

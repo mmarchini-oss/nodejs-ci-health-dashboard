@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/bulma-tooltip.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Node.js CI Health Dashboard</title>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container has-text-centered">
+        <figure class="image is-inline-block" style="max-width: 220px; height: auto;">
+          <img src="https://camo.githubusercontent.com/9c24355bb3afbff914503b663ade7beb341079fa/68747470733a2f2f6e6f64656a732e6f72672f7374617469632f696d616765732f6c6f676f2d6c696768742e737667">
+        </figure>
+        <h1 class="title is-2">CI Health Dashboard</h1>
+      </div>
+    </section>
+
+    <div id="vueApp">
+      <section class="section">
+        <div class="container has-text-centered">
+          <div class="statistics has-text-center">
+            <table class="is-inline-block">
+              <tbody>
+                <tr v-for="(stats, key) in statistics" class="subtitle title is-4" v-bind:class="statusTextColor(key)">
+                  <td class="has-text-right">
+                    {{ key }}:
+                  </td>
+                  <td class="">
+                    <b> {{ stats.total }} </b>
+                  </td>
+                  <td class="">
+                    ({{ stats.percent | toPercent }}%)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container has-text-centered">
+          <div class="jobs-progress-container">
+
+            <div class="job-progress-header">
+              <h2 class="title is-3">Last {{ jobs.length }} Jobs</h2>
+            </div>
+
+            <div class="jobs-progress-bar">
+              <a v-for="(job, index) in jobs" v-bind:class="statusBackgroundColor(job.result)" v-bind:href="job.url"
+                  v-bind:data-tooltip="jobSummary(job)" class="job-progress-bar tooltip" target="blank_">
+              </a>
+            </div>
+
+            <div class="job-progress-footer">
+              <span class="is-pulled-left">Newest</span>
+              <span class="is-pulled-right">Oldest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- <script type="module" src="/lib/index.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/assets/js/index.js"></script>
+  </body>
+</html>
