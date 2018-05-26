@@ -25,6 +25,9 @@ class Jenkins {
     for (let build of allBuilds) {
       const { timestamp } = build;
       {
+        // Jenkins reports `null` result for job that have not yet resolved ;)
+        if (build.result === null) build.result = 'RUNNING';
+        
         const { number, result, url } = build;
 
         jobs.push({
