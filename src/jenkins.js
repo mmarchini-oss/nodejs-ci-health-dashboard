@@ -22,6 +22,7 @@ class Jenkins {
     }
 
     const jobs = [];
+    const machinesMatrix = {};
     for (let build of allBuilds) {
       const { timestamp } = build;
       {
@@ -35,7 +36,7 @@ class Jenkins {
         });
       }
       for (let machine of build.subBuilds) {
-        const machineJobs = this.machinesMatrix[machine.jobName] || [];
+        const machineJobs = machinesMatrix[machine.jobName] || [];
         const { buildNumber, result, url } = machine;
         machineJobs.push({
           timestamp,
@@ -43,10 +44,11 @@ class Jenkins {
           result,
           url: `https://ci.nodejs.org/${url}`,
         });
-        this.machinesMatrix[machine.jobName] = machineJobs;
+        machinesMatrix[machine.jobName] = machineJobs;
       }
     }
     console.info(`${jobs.length} jobs fetched from Jenkins`);
+    this.machinesMatrix = machinesMatrix;
     this.commitJobs = jobs;
   }
 
