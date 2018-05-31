@@ -19,7 +19,7 @@ function updateStatisticsForJob(state, {name, jobs}) {
     let key = job.result || 'RUNNING';
     state.statistics[name][key].total++;
     state.statistics[name][key].percent =
-      state.statistics[name][key].total / jobs.length;
+      state.statistics[name][key].total / Math.min(jobs.length, state.limit);
   }
 };
 
