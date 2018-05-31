@@ -8,7 +8,7 @@ const app = express();
 
 const jenkins = new Jenkins();
 
-if (env == 'development') app.use('/', express.static('public'));
+if (env == 'development') app.use('/', express.static('dist/public'));
 
 function handleApi(req, res) {
   res.send({ jobs: jenkins.commitJobs, matrix: jenkins.machinesMatrix });

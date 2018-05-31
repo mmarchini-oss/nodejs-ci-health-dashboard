@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/bulma-tooltip.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,62 +21,7 @@
     </section>
 
     <div id="vueApp">
-      <section class="section">
-        <div class="container has-text-centered">
-          <h2 class="title is-3">Last {{ this.limit }} Jobs</h2>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="container has-text-centered">
-          <div class="statistics has-text-center">
-            <table class="is-inline-block">
-              <thead>
-                <tr class="subtitle title is-4">
-                  <th class="has-text-right">
-                    Pipeline
-                  </th>
-                  <th v-for="key in status" v-bind:class="statusTextColor(key)">
-                    {{ key }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(jobStatus, jobName) in statistics">
-                  <td class="subtitle title is-5 has-text-right">
-                    {{ jobName }}
-                  </td>
-                  <td v-for="(stats, key) in jobStatus" class="subtitle title is-5" v-bind:class="statusTextColor(key)">
-                    <b> {{ stats.total }} </b>({{ stats.percent | toPercent }}%)
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container has-text-centered">
-          <div v-for="(jobList, jobName) in jobs" class="jobs-progress-container">
-
-            <div class="job-progress-header">
-              <h3 class="subtitle is-3">{{ jobName }}</h3>
-            </div>
-
-            <div class="jobs-progress-bar">
-              <a v-for="(job, index) in jobList.slice(0, 100)" v-bind:class="statusBackgroundColor(job.result)" v-bind:href="job.url"
-                  v-bind:data-tooltip="jobSummary(job)" class="job-progress-bar tooltip" target="blank_">
-              </a>
-            </div>
-
-            <div class="job-progress-footer">
-              <span class="is-pulled-left">Newest</span>
-              <span class="is-pulled-right">Oldest</span>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
 
     <footer class="footer">
@@ -93,7 +35,7 @@
     </footer>
 
     <!-- <script type="module" src="/lib/index.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="/assets/js/index.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="/assets/js/bundle.js"></script>
   </body>
 </html>
