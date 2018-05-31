@@ -28,7 +28,7 @@ class Jenkins {
       {
         // Jenkins reports `null` result for job that have not yet resolved ;)
         if (build.result === null) build.result = 'RUNNING';
-        
+
         const { number, result, url } = build;
 
         jobs.push({
@@ -39,6 +39,9 @@ class Jenkins {
         });
       }
       for (let machine of build.subBuilds) {
+        // Jenkins reports `null` result for job that have not yet resolved ;)
+        if (machine.result === null) machine.result = 'RUNNING';
+
         const machineJobs = machinesMatrix[machine.jobName] || [];
         const { buildNumber, result, url } = machine;
         machineJobs.push({
