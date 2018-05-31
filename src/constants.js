@@ -15,12 +15,9 @@ const PR_JOB_PATH = 'job/node-test-pull-request';
 const COMMIT_JOB_PATH = 'job/node-test-commit';
 
 const COMMIT_TREE = `allBuilds[${BUILD_FIELDS},${ACTION_TREE},${CHANGE_TREE},subBuilds[${SUB_BUILD_FIELDS}]]`;
-console.log(
-  `https://${CI_DOMAIN}/${COMMIT_JOB_PATH}/api/json?tree=${COMMIT_TREE}{0,100}`,
-);
 module.exports = {
   SECOND: 1000,
   MINUTE: 60 * SECOND,
 
-  API_URL: `https://${CI_DOMAIN}/${COMMIT_JOB_PATH}/api/json?tree=${COMMIT_TREE}{0,100}`,
+  API_URL: `https://${CI_DOMAIN}/${COMMIT_JOB_PATH}/api/json?tree=${COMMIT_TREE}`,
 };

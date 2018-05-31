@@ -30,8 +30,20 @@
                 <div class="dropdown-content">
                   <div class="dropdown-item">
                     <strong>#{{job.number}}</strong>
-                    <b class="is-block" v-bind:class="job.result | statusTextColor">{{ job.result }}</b>
+                    <b v-bind:class="job.result | statusTextColor">{{ job.result }}</b>
                     <small>{{ job.timestamp | dateToLocaleString}}</small>
+                  </div>
+                  <div v-if="jobName === 'node-test-commit'" class="dropdown-divider">
+                  </div>
+                  <div class="dropdown-item" v-for="subJob of job.subJobs"
+                       v-if="jobName === 'node-test-commit' && subJob.result == 'FAILURE'">
+                    <a v-bind:href="subJob.url" target="blank_">{{subJob.jobName}}</a>
+                    <b class="is-block" v-bind:class="subJob.result | statusTextColor">{{ subJob.result }}</b>
+                  </div>
+                  <div v-if="jobName === 'node-test-commit' && job.result == 'RUNNING'" class="dropdown-item">
+                    <span class="icon is-large" v-bind:class="'RUNNING' | statusTextColor">
+                      <i class="fas fa-sync fa-spin fa-2x"></i>
+                    </span>
                   </div>
                 </div>
               </div>

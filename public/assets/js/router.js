@@ -8,7 +8,8 @@ Vue.use(Router);
 
 const routes = [
   { name: 'job-summary', path: '/job-summary', component: JobSummary },
-  { name: 'detailed-jobs', path: '/detailed-jobs', component: DetailedJobs }
+  { name: 'detailed-jobs', path: '/detailed-jobs', component: DetailedJobs },
+  { path: '*', redirect: '/job-summary' },
 ];
 
 export default new Router({

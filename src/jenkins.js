@@ -7,7 +7,7 @@ class Jenkins {
   constructor() {
     this.commitJobs = [];
     this.machinesMatrix = {};
-    this.periodicallyFetchJobs(5 * constants.MINUTE);
+    this.periodicallyFetchJobs(2 * constants.MINUTE);
   }
 
   async fetchJobs() {
@@ -24,33 +24,41 @@ class Jenkins {
     const jobs = [];
     const machinesMatrix = {};
     for (let build of allBuilds) {
+      if (build.subBuilds.length == 0) continue;
+
+      // Jenkins reports `null` result for job that have not yet resolved ;)
+      if (build.result === null) build.result = 'RUNNING';
+
       const { timestamp } = build;
-      {
-        // Jenkins reports `null` result for job that have not yet resolved ;)
-        if (build.result === null) build.result = 'RUNNING';
-
-        const { number, result, url } = build;
-
-        jobs.push({
-          timestamp,
-          number,
-          result,
-          url,
-        });
-      }
+      const subJobs = [];
       for (let machine of build.subBuilds) {
         // Jenkins reports `null` result for job that have not yet resolved ;)
         if (machine.result === null) machine.result = 'RUNNING';
 
         const machineJobs = machinesMatrix[machine.jobName] || [];
         const { buildNumber, result, url } = machine;
-        machineJobs.push({
+        const machineJob = {
           timestamp,
           number: buildNumber,
           result,
+          jobName: machine.jobName,
           url: `https://ci.nodejs.org/${url}`,
-        });
+        };
+        machineJobs.push(machineJob);
+        subJobs.push(machineJob);
         machinesMatrix[machine.jobName] = machineJobs;
+      }
+      {
+        const { number, result, url, jobName } = build;
+
+        jobs.push({
+          timestamp,
+          number,
+          result,
+          url,
+          subJobs,
+          jobName,
+        });
       }
     }
     console.info(`${jobs.length} jobs fetched from Jenkins`);
