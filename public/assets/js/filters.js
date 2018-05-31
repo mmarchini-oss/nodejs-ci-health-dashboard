@@ -10,6 +10,13 @@ Vue.filter('toPercent', function toPercent(value) {
   return Math.ceil(value * 100);
 });
 
+Vue.filter('dateToLocaleString', function toPercent(timestamp) {
+  const date = new Date(timestamp);
+
+  return date.toLocaleString();
+});
+
+
 Vue.filter('statusBackgroundColor', function statusBackgroundColor(status) {
   return 'has-background-' + STATUS_COLORS[status || 'RUNNING'];
 });

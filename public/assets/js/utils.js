@@ -9,3 +9,12 @@ export const STATUS_COLORS = {
 };
 
 export const STATUS = ['RUNNING', 'SUCCESS', 'UNSTABLE', 'ABORTED', 'FAILURE'];
+
+export async function fetchJobs() {
+  const response = await fetch(API_URL);
+  const jsonResponse = await response.json();
+  if (!jsonResponse) {
+    return [];
+  }
+  return jsonResponse;
+}

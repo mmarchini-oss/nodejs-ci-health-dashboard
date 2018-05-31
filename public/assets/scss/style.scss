@@ -1,0 +1,30 @@
+@import './variables.scss';
+
+@import 'bulma/bulma.sass';
+@import 'bulma-tooltip/dist/bulma-tooltip.sass';
+
+@import './job-summary.scss';
+@import './detailed-jobs.scss';
+
+.section {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+}
+
+.router-link-active {
+  font-weight: 700;
+  border-bottom: 2px solid $link;
+  a {
+    margin-bottom: -2px;
+  }
+}

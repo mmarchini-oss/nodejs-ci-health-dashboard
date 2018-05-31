@@ -15,8 +15,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        test: /\.scss$/,
+        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
       },
       {
         test: /\.vue$/,
@@ -25,7 +25,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([ { from: `${srcPath}/index.html`, to: dstPath} ]),
+    new CopyWebpackPlugin([
+      { context: srcPath, from: `index.html`, to: dstPath},
+      { context: srcPath, from: `assets/images/*.png`, to: dstPath},
+    ]),
     new VueLoaderPlugin(),
   ],
 };

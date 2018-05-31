@@ -1,0 +1,38 @@
+.jobs-progress-container {
+  display: inline-block;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.jobs-progress-bar {
+  display: inline-block;
+  border-radius: 7px;
+  height: 56px;
+  /* overflow: hidden; */
+}
+
+.job-progress-header {
+  margin-bottom: 15px;
+}
+
+.jobs-progress-bar {
+  .dropdown {
+    height: 100%;
+    &:first-child .job-progress-bar {
+      border-radius: 7px 0px 0px 7px;
+    }
+    &:last-child .job-progress-bar {
+      border-radius: 0px 7px 7px 0px;
+    }
+    .job-progress-bar {
+      display: inline-block;
+      width: 9px;
+      height: 100%;
+      opacity: 0.85;
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+}
