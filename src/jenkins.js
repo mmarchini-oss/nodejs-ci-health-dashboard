@@ -10,10 +10,26 @@ class Jenkins {
     this.periodicallyFetchJobs(2 * constants.MINUTE);
   }
 
+  getHeaders() {
+    const user = process.env.JENKINS_USER;
+    const token = process.env.JENKINS_TOKEN;
+    if (! (user || token)) {
+      console.error("You must set JENKINS_USER and JENKINS_TOKEN environemnt " +
+                    "variables before starting the server. Please get your " +
+                    "token at https://ci.nodejs.org/me/configure");
+      process.exit(1);
+    }
+    const encoded = Buffer.from(`${user}:${token}`).toString('base64');
+    return {
+      'Authorization': `Basic ${encoded}`,
+      'User-Agent': 'nodejs-ci-health',
+    }
+  }
+
   async fetchJobs() {
     console.info('Fetching jobs from Jenkins');
     let response = {};
-    response = await fetch(constants.API_URL);
+    response = await fetch(constants.API_URL, { headers: this.getHeaders() });
 
     let allBuilds = (await response.json())['allBuilds'];
 
