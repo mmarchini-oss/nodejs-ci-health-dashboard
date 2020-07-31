@@ -1,6 +1,6 @@
 FROM node:10
 
-MAINTAINER Matheus Marchini <mat@mmarchini.me>
+MAINTAINER Mary Marchini <oss@mmarchini.me>
 
 COPY . /app
 WORKDIR /app

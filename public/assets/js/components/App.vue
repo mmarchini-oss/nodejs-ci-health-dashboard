@@ -29,7 +29,7 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>
-            Created by <a href="https://mmarchini.me/">Matheus Marchini</a>
+            Created by <a href="https://mmarchini.me/">Mary Marchini</a>
           </p>
         </div>
       </div>
