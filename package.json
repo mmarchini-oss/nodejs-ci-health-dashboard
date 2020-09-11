@@ -20,7 +20,7 @@
   "homepage": "https://github.com/mmarchini/nodejs-ci-health-dashboard#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "bulma": "^0.7.1",
